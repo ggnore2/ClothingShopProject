@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: black;
+    padding: 15px;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+}
+
+.header a:hover {
+    opacity: 0.7;
+}
+
+.header a:active {
+    opacity: 0.5;
+}
+
+.navbar {
+    background-color: black;
+    display: flex;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+
+.navbar a:hover {
+    opacity: 0.7;
+}
+
+.navbar a:active {
+    opacity: 0.5;
+}
+
+.message {
+    display: inline-block;
+    width: 200px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: rgb(26, 26, 100);
+    color: white;
+
+    animation: messageKeyFrames 3s ease-in-out forwards;
+}
+
+@keyframes messageKeyFrames {
+    0% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+.message2 {
+    display: inline-block;
+    width: 150px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    opacity: 0;
+}
+
+.message2.show {
+    animation: messageKeyFrames 3s ease-in-out forwards;
+}
+
+@keyframes messageKeyFrames {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}

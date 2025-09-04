@@ -1,0 +1,58 @@
+{% extends "base.html"%}
+
+
+{% block content %}
+<div class="ReturnToIndexContainer">
+    <a href="{% url 'ClothingShop:Index' %}" class="ReturnToIndexAnchor">
+        Quay lại trang chủ
+    </a>
+</div>
+
+<div class="FormContent">
+    <div class="FormContainer">
+        <h2 class="FormTitle">
+            Đăng ký
+        </h2>
+        <form method="POST" action="{% url 'ClothingShop:DangKy' %}" novalidate>
+            {% csrf_token %}
+            <div>
+                <label for="{{dangKyForm.TenNguoiDung.id_for_label}}">
+                    Tên người dùng:
+                </label><br />
+                {{ dangKyForm.TenNguoiDung }}
+                {% if dangKyForm.TenNguoiDung.errors %}
+                <div class="FormError">{{ dangKyForm.TenNguoiDung.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{dangKyForm.Email.id_for_label}}">
+                    Email:
+                </label><br />
+                {{ dangKyForm.Email }}
+                {% if dangKyForm.Email.errors %}
+                <div class="FormError">{{ dangKyForm.Email.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{dangKyForm.MatKhau.id_for_label}}">
+                    Mật khẩu:
+                </label><br />
+                {{ dangKyForm.MatKhau }}
+                {% if dangKyForm.MatKhau.errors %}
+                <div class="FormError">{{ dangKyForm.MatKhau.errors.0 }}</div>
+                {% endif %}
+            </div>
+            <div class="SubmitButtonContainer">
+                <button type="submit">Đăng ký</button>
+            </div>
+
+        </form>
+
+
+    </div>
+
+</div>
+{% endblock %}

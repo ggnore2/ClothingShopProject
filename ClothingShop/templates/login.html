@@ -1,0 +1,48 @@
+{% extends "base.html"%}
+
+
+{% block content %}
+<div class="ReturnToIndexContainer">
+    <a href="{% url 'ClothingShop:Index' %}" class="ReturnToIndexAnchor">
+        Quay lại trang chủ
+    </a>
+</div>
+
+<div class="FormContent">
+    <div class="FormContainer">
+        <h2 class="FormTitle">
+            Đăng nhập
+        </h2>
+        <form method="POST" action="{% url 'ClothingShop:DangNhap' %}" novalidate>
+            {% csrf_token %}
+            <div>
+                <label for="{{dangNhapForm.TenNguoiDungHayEmail.id_for_label}}">
+                    Tên người dùng (hay email):
+                </label><br />
+                {{ dangNhapForm.TenNguoiDungHayEmail }}
+                {% if dangNhapForm.TenNguoiDungHayEmail.errors %}
+                <div class="FormError">{{ dangNhapForm.TenNguoiDungHayEmail.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{dangNhapForm.MatKhau.id_for_label}}">
+                    Mật khẩu:
+                </label><br />
+                {{ dangNhapForm.MatKhau }}
+                {% if dangNhapForm.MatKhau.errors %}
+                <div class="FormError">{{ dangNhapForm.MatKhau.errors.0 }}</div>
+                {% endif %}
+            </div>
+            <div class="SubmitButtonContainer">
+                <button type="submit">Đăng nhập</button>
+            </div>
+
+        </form>
+
+
+    </div>
+
+</div>
+{% endblock %}

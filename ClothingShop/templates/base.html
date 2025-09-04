@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static '/css/global.css' %}" rel="stylesheet" />
+    <link href="{% static '/css/form.css' %}" rel="stylesheet" />
+    <link href="{% static '/css/searchResult.css' %}" rel="stylesheet" />
+    <link href="{% static '/css/datHang.css' %}" rel="stylesheet" />
+
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages%}
+    <div class="message">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="message2">
+
+    </div>
+    <input id="csrf_token" type="text" hidden value="{{csrf_token}}" />
+    <div class="header">
+        <a href="{% url 'ClothingShop:Index' %}">
+            Cửa hàng quần áo
+        </a>
+    </div>
+    <div class="navbar">
+        {% if not request.session.taiKhoanID%}
+        <a href="{% url 'ClothingShop:DangKy' %}">
+            Đăng ký
+        </a>
+        <a href="{% url 'ClothingShop:DangNhap' %}">
+            Đăng nhập
+        </a>
+        {% else %}
+        <a>
+            Đăng xuất
+        </a>
+
+        {% endif %}
+
+        <a href="{% url 'ClothingShop:TimKiemSanPham' %}">
+            Tìm sản phẩm
+        </a>
+        <a href="{% url 'ClothingShop:DatHang' %}">
+            Xem đơn hàng/ đặt hàng
+        </a>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'javascript/utils.js' %}">
+
+    </script>
+
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

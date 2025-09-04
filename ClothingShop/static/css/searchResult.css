@@ -1,0 +1,51 @@
+.ProductCardContainer {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 10px;
+}
+
+.ProductCard {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+    text-transform: capitalize;
+}
+
+.ProductCard img {
+    width: 100px;
+}
+
+.Pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    padding: 30px;
+
+}
+
+.Pagination>* {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.NonCurrentAnchor {
+    text-decoration: none;
+    color: black;
+}
+
+.NonCurrentAnchor:hover {
+    opacity: 0.7;
+}
+
+.NonCurrentAnchor:active {
+    opacity: 0.5;
+}
+
+.CurrentPage {
+    color: white;
+    background-color: black;
+}

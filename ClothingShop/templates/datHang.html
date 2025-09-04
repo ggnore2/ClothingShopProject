@@ -1,0 +1,105 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %}
+<div class="DonHang">
+    {%if donHang %}
+
+    <table>
+        <tr>
+            <td>
+                Hình ảnh
+            </td>
+            <td>
+                Tên sản phẩm
+            </td>
+            <td>
+                Giá
+            </td>
+            <td>
+                Số lượng sản phẩm
+            </td>
+            <td>
+                Bỏ sản phẩm ra khỏi giỏ hàng
+            </td>
+        </tr>
+        {% for row in donHang %}
+
+        <tr>
+            <td>
+                <img src="{{row.hinhAnhURL}}" />
+            </td>
+            <td>
+                {{row.TenSanPham}}
+            </td>
+            <td>
+                {{row.Gia}} VND
+            </td>
+            <td>
+                <input class="ChangeQuantityInput" min="1" value="{{row.soLuongSanPham}}" type="number"
+                    data-idSanPham="{{row.id}}" />
+            </td>
+            <td><button class="RemoveFromCartButton" data-idSanPham="{{row.id}}">
+                    Bỏ ra khỏi giỏ hàng
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    {% endif %}
+
+</div>
+<div>
+    <h1>
+        Đặt hàng
+    </h1>
+    <form class=" FormDatHang" method="POST" action="{% url 'ClothingShop:DatHang'%}" novalidate>
+        {% csrf_token %}
+        <div>
+            <label for="{{datHangForm.TenNguoiDat.id_for_label}}">
+                Tên người nhận:
+            </label><br />
+            {{datHangForm.TenNguoiNhan}}
+            {% if datHangForm.TenNguoiNhan.errors %}
+            <div class="FormError">{{ datHangForm.TenNguoiNhan.errors.0 }}
+            </div>
+            {% endif %}
+        </div>
+        <div>
+            <label for="{{datHangForm.DiaChi.id_for_label}}">
+                Địa chỉ:
+            </label><br />
+            {{datHangForm.DiaChi}}
+            {% if datHangForm.DiaChi.errors %}
+            <div class="FormError">{{ datHangForm.DiaChi.errors.0 }}
+            </div>
+            {% endif %}
+        </div>
+        <div>
+            <label for="{{datHangForm.SDTNguoiNhan.id_for_label}}">
+                SĐT người nhận:
+            </label><br />
+            {{datHangForm.SDTNguoiNhan}}
+            {% if datHangForm.SDTNguoiNhan.errors %}
+            <div class="FormError">{{ datHangForm.SDTNguoiNhan.errors.0 }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="SubmitButtonContainer">
+            <button>
+                Nhập đơn hàng
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'javascript/datHang.js' %}">
+
+</script>
+{% endblock %}

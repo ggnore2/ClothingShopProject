@@ -1,0 +1,36 @@
+.DonHang {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.DonHang table {
+    display: inline-block;
+    overflow: scroll;
+    height: 100px;
+    border-collapse: collapse;
+}
+
+.DonHang table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.DonHang td {
+    padding: 10px;
+}
+
+.DonHang table img {
+    width: 50px;
+}
+
+
+.FormDatHang .SubmitButtonContainer {
+    display: block;
+}
+
+.FormDatHang {
+    padding-left: 10px;
+}

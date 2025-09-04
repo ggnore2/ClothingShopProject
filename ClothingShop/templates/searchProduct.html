@@ -1,0 +1,131 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %}
+<div class="ReturnToIndexContainer">
+    <a href="{% url 'ClothingShop:Index' %}" class="ReturnToIndexAnchor">
+        Quay lại trang chủ
+    </a>
+</div>
+
+<div class="FormContent">
+    <div class="FormContainer SearchFormContainer">
+        <h2 class="FormTitle">
+            Tìm kiếm sản phẩm
+        </h2>
+        <form method="GET" action="{% url 'ClothingShop:TimKiemSanPham' %}" novalidate>
+            <div>
+                <label for="{{timSanPhamForm.TenSanPham.id_for_label}}">
+                    Tên sản phẩm:
+                </label><br />
+                {{ timSanPhamForm.TenSanPham }}
+                {% if timSanPhamForm.TenSanPham.errors %}
+                <div class="FormError">{{ timSanPhamForm.TenSanPham.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{timSanPhamForm.DanhMucChinh.id_for_label}}">
+                    Danh mục chính:
+                </label><br />
+                {{ timSanPhamForm.DanhMucChinh }}
+                {% if timSanPhamForm.DanhMucChinh.errors %}
+                <div class="FormError">{{ timSanPhamForm.DanhMucChinh.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{timSanPhamForm.DanhMucPhu.id_for_label}}">
+                    Danh mục phụ
+                </label><br />
+                {{ timSanPhamForm.DanhMucPhu }}
+                {% if timSanPhamForm.DanhMucPhu.errors %}
+                <div class="FormError">{{ timSanPhamForm.DanhMucPhu.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+
+
+
+            <div>
+                <label for="{{timSanPhamForm.GiaNhoNhat.id_for_label}}">
+                    Giá nhỏ nhất:
+                </label><br />
+                {{ timSanPhamForm.GiaNhoNhat }}
+                {% if timSanPhamForm.GiaNhoNhat.errors %}
+                <div class="FormError">{{ timSanPhamForm.GiaNhoNhat.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+            <div>
+                <label for="{{timSanPhamForm.GiaLonNhat.id_for_label}}">
+                    Giá lớn nhất:
+                </label><br />
+                {{ timSanPhamForm.GiaLonNhat }}
+                {% if timSanPhamForm.GiaLonNhat.errors %}
+                <div class="FormError">{{ timSanPhamForm.GiaLonNhat.errors.0 }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="SubmitButtonContainer">
+                <button type="submit">Tìm kiếm</button>
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>
+
+<div class="ProductCardContainer">
+    {% for product in pageObj %}
+    <div class="ProductCard">
+        <img src="{{product.HinhAnh.url}}" />
+        <p>
+            {{product.TenSanPham}}
+        </p>
+        <p>
+            {{product.Gia}} VND
+        </p>
+        <div class="BoVaoGioHangForm">
+            <input type="number" min="1" value="1" class="SoLuongSanPhamInput" />
+            <button class="BoVaoGioHangButton" data-product-id="{{product.id}}">
+                Bỏ vào giỏ hàng
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="Pagination">
+
+    {% if pageObj.has_previous %}
+    <a class="NonCurrentAnchor" href="?{{ query_string }}&page={{ pageObj.previous_page_number}}#Current">Trước</a>
+    {% endif %}
+
+    {% for num in page_window %}
+    {% if num == pageObj.number %}
+    <span id="Current" class="CurrentPage">{{ num }}</span>
+    {% else %}
+    <a class="NonCurrentAnchor" href="?{{ query_string }}&page={{ num }}#Current">{{ num }}</a>
+    {% endif %}
+    {% endfor %}
+
+    {% if pageObj.has_next %}
+    <a class="NonCurrentAnchor" href="?{{ query_string }}&page={{ pageObj.next_page_number }}#Current">Sau</a>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'javascript/searchProduct.js' %}">
+
+</script>
+{% endblock %}

@@ -16,9 +16,4 @@ Web bán quần áo đơn giản, làm bằng Django + MySQL (backend) và HTML/
 ```bash
 git clone https://github.com/ggnore2/ClothingShopProject.git
 cd ClothingShopProject
-python -m venv venv
-venv\Scripts\activate   # Windows
-source venv/bin/activate # Mac/Linux
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+python manage.py runserver và truy cập đường link
